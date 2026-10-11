@@ -4,7 +4,7 @@ A creative, interactive, and fully responsive personal portfolio website built w
 
 ## 🚀 Live Demo
 Check out the live portfolio hosted on GitHub Pages:  
-[👉 View Live Portfolio](https://saravanakumar070707.github.io/YOUR_REPOSITORY_NAME)
+[👉 View Live Portfolio](https://saravanakumar070707.github.io/Saravana-Portfolio/)
 
 ---
 
