@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Saravana Kumar S — Portfolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- MAIN SCENE. Background image path: assets/background/background.jpeg (set in style.css, .stage) -->
+<main class="stage" id="stage">
+  <!-- 5 BOOKS: data-book must match keys in BOOKS (script.js) -->
+  <button class="hot book-hot" data-book="projects"   style="left:3.1%;top:55.1%;width:31%;height:8.7%"  aria-label="Open Projects book"></button>
+  <button class="hot book-hot" data-book="skills"     style="left:2.4%;top:62.4%;width:31.6%;height:7.6%" aria-label="Open Skills book"></button>
+  <button class="hot book-hot" data-book="resume"     style="left:2.6%;top:68.3%;width:31.6%;height:7.9%" aria-label="Open Resume book"></button>
+  <button class="hot book-hot" data-book="experience" style="left:2.4%;top:74.4%;width:31.9%;height:8.1%" aria-label="Open Experience book"></button>
+  <button class="hot book-hot" data-book="about"      style="left:2.3%;top:80.1%;width:32.2%;height:8.9%" aria-label="Open About Me book"></button>
+
+  <!-- 4 CONTACT BADGES: links are set in script.js (CONTACTS) -->
+  <a class="hot badge" id="b-linkedin" style="left:74.2%;top:85.2%;width:4.2%;height:5.8%" target="_blank" rel="noopener" aria-label="LinkedIn"></a>
+  <a class="hot badge" id="b-github"   style="left:78.9%;top:85.6%;width:4.5%;height:6.2%" target="_blank" rel="noopener" aria-label="GitHub"></a>
+  <a class="hot badge" id="b-gmail"    style="left:84%;top:86.4%;width:4.5%;height:6%"     aria-label="Email"></a>
+  <a class="hot badge" id="b-whatsapp" style="left:89.3%;top:86.8%;width:4.6%;height:6.2%" target="_blank" rel="noopener" aria-label="WhatsApp"></a>
+
+  <button class="hot" id="watch-hot" style="left:67.3%;top:44.5%;width:7.2%;height:7.8%" aria-label="Open live India time"></button>
+  <button class="hot" id="note-hot"  style="left:34.7%;top:80.1%;width:34.2%;height:13.8%" aria-label="Write a visitor note"></button>
+  <button class="hot" id="id-hot"    style="left:56.1%;top:65%;width:4.8%;height:9.4%" aria-label="Open ID card"></button>
+</main>
+
+<!-- OPEN BOOK OVERLAY (filled by script.js) -->
+<div class="overlay" id="book-overlay" hidden>
+  <div class="book" id="book" role="dialog" aria-modal="true">
+    <button class="close" data-close aria-label="Close book">✕ Close book</button>
+    <div class="page left" id="page-left"></div>
+    <div class="spine"></div>
+    <div class="page right" id="page-right"></div>
+  </div>
+</div>
+
+<!-- WATCH MODAL -->
+<div class="overlay dark" id="watch-overlay" hidden>
+  <div class="watch" role="dialog" aria-modal="true">
+    <button class="close" data-close aria-label="Close">✕ Close</button>
+    <div class="time" id="ist-time">--:--:-- --</div>
+    <div class="tz">IST</div>
+    <div class="tzname">India Standard Time</div>
+    <div class="date" id="ist-date"></div>
+  </div>
+</div>
+
+<!-- VISITOR NOTE -->
+<div class="overlay dark" id="note-overlay" hidden>
+  <div class="note" id="note" role="dialog" aria-modal="true">
+    <button class="close" data-close aria-label="Close note">✕ Close</button>
+    <textarea id="note-text" placeholder="Leave a quick note here…" maxlength="1200"></textarea>
+    <div class="note-actions">
+      <button id="note-done">Done — new sheet</button>
+      <button id="note-clear" class="ghost">Clear</button>
+    </div>
+  </div>
+</div>
+
+<!-- ID CARD MODAL. Photo path: assets/profile/id-card.jpeg -->
+<div class="overlay dark" id="id-overlay" hidden>
+  <div class="idcard" role="dialog" aria-modal="true">
+    <button class="close" data-close aria-label="Close ID card">✕ Close</button>
+    <div class="tag"></div>
+    <!-- ID PROFILE PHOTO: replace this file to change the photo -->
+    <img src="assets/profile/id-card.jpeg" alt="Saravana Kumar S — student ID card">
+  </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

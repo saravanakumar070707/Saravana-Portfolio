@@ -1,0 +1,93 @@
+/* ---------- BASE ---------- */
+:root{--paper:#fbf6ea;--ink:#2b2118;--muted:#6b5a48;--accent:#7a4b1e;}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;background:#1a120b;overflow-x:hidden;font-family:Georgia,'Times New Roman',serif;color:var(--ink)}
+body{display:grid;place-items:center}
+/* BACKGROUND IMAGE: change the file path here */
+.stage{position:relative;width:min(100vw,calc(100dvh*1.3333));aspect-ratio:1448/1086;
+  background:url('assets/background/background.jpeg') center/100% 100% no-repeat}
+.hot{position:absolute;display:block;background:transparent;border:0;cursor:pointer;border-radius:8px;
+  transition:transform .25s,box-shadow .25s,background .25s;-webkit-tap-highlight-color:transparent}
+.hot:focus-visible{outline:3px solid #ffd27a;outline-offset:2px}
+.book-hot:hover,.book-hot:focus-visible{background:rgba(255,235,190,.16);transform:translateX(8px);box-shadow:0 0 0 2px rgba(255,220,150,.6)}
+.badge{border-radius:12px;animation:pulse 3s ease-in-out infinite}
+.badge:hover,.badge:focus-visible{transform:translateY(-6px) scale(1.12);box-shadow:0 10px 18px rgba(0,0,0,.4);background:rgba(255,255,255,.12)}
+#watch-hot,#note-hot,#id-hot{border-radius:10px}
+#watch-hot:hover,#note-hot:hover,#id-hot:hover{background:rgba(255,235,190,.18);box-shadow:0 0 0 2px rgba(255,220,150,.6)}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}50%{box-shadow:0 0 0 4px rgba(255,255,255,.28)}}
+
+/* ---------- OVERLAYS ---------- */
+.overlay{position:fixed;inset:0;z-index:10;display:grid;place-items:center;padding:12px;
+  background:rgba(20,12,6,.72);backdrop-filter:blur(3px);animation:fade .3s both}
+.overlay[hidden]{display:none}
+.overlay.closing{animation:fade .25s reverse both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+.close{position:absolute;top:10px;right:10px;z-index:3;padding:8px 14px;border:0;border-radius:20px;
+  background:#2b2118;color:#fff;font:600 14px system-ui,sans-serif;cursor:pointer;transition:transform .2s}
+.close:hover{transform:scale(1.06)}
+
+/* ---------- OPEN BOOK ---------- */
+.book{--cover:#1f3a6b;position:relative;width:min(1000px,100%);height:min(640px,calc(100dvh - 24px));
+  display:grid;grid-template-columns:1fr 14px 1fr;background:var(--cover);border-radius:10px;padding:14px;
+  box-shadow:0 30px 60px rgba(0,0,0,.6);animation:bookIn .55s cubic-bezier(.2,.8,.2,1) both;perspective:1800px}
+@keyframes bookIn{from{transform:scale(.6) rotateX(25deg);opacity:0}to{transform:none;opacity:1}}
+.page{background:var(--paper);padding:34px 30px 30px;overflow-y:auto;line-height:1.55;font-size:15.5px;
+  background-image:linear-gradient(90deg,rgba(0,0,0,.07),transparent 10%);}
+.page.left{border-radius:6px 0 0 6px;transform-origin:right center;animation:pageL .7s .15s both}
+.page.right{border-radius:0 6px 6px 0;background-image:linear-gradient(270deg,rgba(0,0,0,.07),transparent 10%);
+  transform-origin:left center;animation:pageR .7s .15s both}
+@keyframes pageR{from{transform:rotateY(-95deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes pageL{from{transform:rotateY(95deg);opacity:0}to{transform:none;opacity:1}}
+.spine{background:linear-gradient(90deg,#0004,#0002 50%,#0004)}
+.page h2{font-size:24px;margin-bottom:4px;color:var(--accent)}
+.page h3{font-size:17px;margin:16px 0 4px}
+.page .sub{color:var(--muted);font-style:italic;margin-bottom:8px}
+.page ul{padding-left:20px;margin:6px 0}
+.page li{margin:3px 0}
+.page hr{border:0;border-top:1px solid #d9cbb0;margin:14px 0}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0 10px;padding:0;list-style:none}
+.chips li{background:#efe3c8;border:1px solid #d9cbb0;border-radius:14px;padding:2px 11px;font-size:14px;margin:0}
+.tech{margin-top:14px;padding-top:10px;border-top:1px dashed #b9a582;font-weight:700}
+.resume-img{width:100%;border:1px solid #d9cbb0;border-radius:4px;margin-bottom:10px;display:block}
+.pdf-link{display:inline-block;margin-top:6px;color:var(--accent);font-weight:700}
+/* Book cover colours (match the spines in the background) */
+.book[data-book=projects]{--cover:#1f3a6b}.book[data-book=skills]{--cover:#1f4a3a}
+.book[data-book=resume]{--cover:#6b1f2c}.book[data-book=experience]{--cover:#7a4b1e}.book[data-book=about]{--cover:#2a2a2e}
+
+/* ---------- WATCH ---------- */
+.watch{position:relative;width:min(560px,100%);padding:56px 20px 40px;text-align:center;color:#f3ead7;
+  background:radial-gradient(circle at 50% 30%,#2b2b30,#0e0e10);border:10px solid #3a3a40;border-radius:50%/40%;
+  box-shadow:0 0 0 4px #111,0 30px 60px #000;animation:zoom .5s cubic-bezier(.2,.8,.2,1) both}
+@keyframes zoom{from{transform:scale(.3);opacity:0}to{transform:none;opacity:1}}
+.time{font:600 clamp(34px,10vw,72px) 'Courier New',monospace;letter-spacing:2px;font-variant-numeric:tabular-nums}
+.tz{font-size:26px;margin-top:6px}.tzname{opacity:.75}.date{margin-top:10px;opacity:.6;font-size:14px}
+
+/* ---------- NOTE ---------- */
+.note{position:relative;width:min(560px,100%);height:min(560px,calc(100dvh - 24px));background:#fff;border-radius:3px;
+  padding:56px 26px 20px;display:flex;flex-direction:column;box-shadow:0 20px 50px #000;animation:zoom .45s both;
+  background-image:repeating-linear-gradient(transparent 0 31px,#cfe0f0 31px 32px);background-color:#fff}
+.note.fresh{animation:newSheet .55s both}
+@keyframes newSheet{from{transform:translateY(60px) rotate(3deg);opacity:0}to{transform:none;opacity:1}}
+.note textarea{flex:1;border:0;background:transparent;resize:none;outline:0;font:22px/32px 'Segoe Print','Bradley Hand','Comic Sans MS',cursive;color:#1d3557}
+.note-actions{display:flex;gap:8px;padding-top:10px}
+.note-actions button{padding:9px 16px;border:0;border-radius:6px;background:#2b2118;color:#fff;font:600 14px system-ui;cursor:pointer}
+.note-actions .ghost{background:#e5e5e5;color:#222}
+
+/* ---------- ID CARD ---------- */
+.idcard{position:relative;width:min(380px,100%);max-height:calc(100dvh - 24px);background:#fff;border-radius:16px;
+  padding:34px 12px 12px;box-shadow:0 30px 60px #000;animation:zoom .5s cubic-bezier(.2,.8,.2,1) both}
+.idcard .tag{position:absolute;top:-6px;left:50%;width:46px;height:10px;margin-left:-23px;background:#1f3a8a;border-radius:0 0 6px 6px}
+.idcard img{display:block;width:100%;max-height:calc(100dvh - 90px);object-fit:contain;border-radius:8px}
+.idcard .close{top:-4px;right:-4px}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:760px){
+  .book{grid-template-columns:1fr;grid-template-rows:1fr 8px 1fr;height:calc(100dvh - 24px);padding:10px}
+  .page{padding:22px 18px;font-size:14.5px}
+  .page.left{border-radius:6px 6px 0 0}.page.right{border-radius:0 0 6px 6px}
+  .spine{background:#0004}
+  .close{font-size:13px;padding:6px 11px}
+  @keyframes pageR{from{transform:translateY(40px);opacity:0}to{transform:none;opacity:1}}
+  @keyframes pageL{from{transform:translateY(-40px);opacity:0}to{transform:none;opacity:1}}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
